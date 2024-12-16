@@ -19,11 +19,11 @@ class MainViewModel : ViewModel() {
     val responseState: LiveData<ResponseState> = _responseState
 
     // Function to fetch the long forms and short form data
-    fun getAcromine() {
+    fun getAcromine(acronym: String) {
         _responseState.value = ResponseState.Loading // Set the state to loading initially
 
         viewModelScope.launch {
-            RetrofitClient.api.getLongForms("NASA").enqueue(object : Callback<AcromineModel> {
+            RetrofitClient.api.getLongForms(acronym).enqueue(object : Callback<AcromineModel> {
                 override fun onResponse(call: Call<AcromineModel>, response: Response<AcromineModel>) {
                     if (response.isSuccessful) {
                         response.body()?.let {

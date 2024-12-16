@@ -7,15 +7,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.acromine.MainViewModel
+import com.acromine.R
 import com.acromine.data.ResponseState
 import com.acromine.data.model.AcromineModelItemModel
 import com.acromine.databinding.AcromineViewBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class AcromineFragment : Fragment() {
 
     private var _binding: AcromineViewBinding? = null
     private val binding get() = _binding!!
+    private lateinit var auth: FirebaseAuth
 
     // Use ViewModel scoped to the fragment
     private val viewmodel: MainViewModel by viewModels()
@@ -42,7 +46,12 @@ class AcromineFragment : Fragment() {
 
         // Set up click listener for a button to fetch data
         binding.btnGetUser.setOnClickListener {
-            viewmodel.getAcromine()
+            viewmodel.getAcromine(binding.etShort.text.toString())
+
+        }
+
+        binding.btnLogout.setOnClickListener {
+            logoutUser()
         }
     }
 
@@ -64,14 +73,22 @@ class AcromineFragment : Fragment() {
     private fun updateSuccessUI(response: AcromineModelItemModel) {
         binding.apply {
             progressCircular.visibility = View.GONE
+            tvText.visibility = View.GONE
 
             val displayText = "${response.sf}, \n" + // Short form
                     "${response.lfs?.get(0)?.lf}, \n" + // First long form
                     "${response.lfs?.get(0)?.freq}, \n" + // Frequency of the first long form
                     "${response.lfs?.get(0)?.since}" // Since when the long form has been used
 
-            etLong.setText(displayText)
+//            etLong.setText(displayText)
+            outputBox.setText(displayText)
         }
+    }
+
+    private fun logoutUser() {
+        auth = FirebaseAuth.getInstance()
+        auth.signOut() // Sign out the user
+        findNavController().navigate(R.id.action_acromineFragment_to_loginFragment) // Navigate back to login
     }
 
     override fun onDestroyView() {
