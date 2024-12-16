@@ -1,4 +1,4 @@
-package com.acromine.login
+package com.acromine.ui.login
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -66,7 +66,7 @@ class LoginFragment : Fragment() {
         }
 
         setupLoginListeners()
-//        setupGoogleAuth()
+        setupGoogleAuth()
         val usernameEditText = binding.username
         val passwordEditText = binding.password
         val loginButton = binding.login
@@ -268,6 +268,5 @@ class LoginFragment : Fragment() {
             }else Log.d("user", task.exception?.message.toString())
         }
     }
-
 
 }

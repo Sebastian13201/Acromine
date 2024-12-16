@@ -1,4 +1,4 @@
-package com.acromine.data
+package com.acromine.data.util
 
 sealed class Result<out T : Any> {
 

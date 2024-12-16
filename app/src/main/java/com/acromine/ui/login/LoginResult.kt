@@ -1,4 +1,4 @@
-package com.acromine.login
+package com.acromine.ui.login
 
 data class LoginResult (
     val success: LoggedInUserView? = null,

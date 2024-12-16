@@ -1,4 +1,4 @@
-package com.acromine.ui
+package com.acromine.ui.acromine
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.acromine.MainViewModel
+import com.acromine.main.MainViewModel
 import com.acromine.R
-import com.acromine.data.ResponseState
+import com.acromine.data.util.ResponseState
 import com.acromine.data.model.AcromineModelItemModel
 import com.acromine.databinding.AcromineViewBinding
 import com.google.firebase.auth.FirebaseAuth

@@ -1,4 +1,4 @@
-package com.acromine.data
+package com.acromine.data.util
 
 import com.acromine.data.model.LoggedInUser
 

@@ -1,12 +1,12 @@
-package com.acromine.login
+package com.acromine.ui.login
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.acromine.R
-import com.acromine.data.LoginRepository
-import com.acromine.data.Result
+import com.acromine.data.util.LoginRepository
+import com.acromine.data.util.Result
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

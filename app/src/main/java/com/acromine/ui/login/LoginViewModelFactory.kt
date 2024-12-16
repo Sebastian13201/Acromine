@@ -1,9 +1,9 @@
-package com.acromine.login
+package com.acromine.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.acromine.data.LoginDataSource
-import com.acromine.data.LoginRepository
+import com.acromine.data.util.LoginDataSource
+import com.acromine.data.util.LoginRepository
 
 class LoginViewModelFactory : ViewModelProvider.Factory {
 

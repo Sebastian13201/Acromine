@@ -1,10 +1,10 @@
-package com.acromine
+package com.acromine.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.acromine.data.ResponseState
+import com.acromine.data.util.ResponseState
 import com.acromine.data.model.AcromineModel
 import com.acromine.data.network.RetrofitClient
 import kotlinx.coroutines.launch

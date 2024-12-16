@@ -1,4 +1,4 @@
-package com.register
+package com.acromine.ui.register
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

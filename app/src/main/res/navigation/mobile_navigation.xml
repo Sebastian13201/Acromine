@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.acromine.login.LoginFragment"
+        android:name="com.acromine.ui.login.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_acromineFragment"
@@ -19,16 +19,17 @@
 
     <fragment
         android:id="@+id/acromineFragment"
-        android:name="com.acromine.ui.AcromineFragment"
+        android:name="com.acromine.ui.acromine.AcromineFragment"
         android:label="AcromineFragment" >
         <action
             android:id="@+id/action_acromineFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            />
     </fragment>
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.register.RegisterFragment"
+        android:name="com.acromine.ui.register.RegisterFragment"
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_acromineFragment"
