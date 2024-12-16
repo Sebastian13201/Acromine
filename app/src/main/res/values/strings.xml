@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Acromine</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login">Login\n</string>
+    <string name="your_web_client_id">227835321442-v0ls5p0862255anpnso73ab74oqu2f15.apps.googleusercontent.com</string>
+</resources>
