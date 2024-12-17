@@ -144,6 +144,10 @@ class LoginFragment : Fragment() {
             val signIn = googleSignInClient.signInIntent
             startActivityForResult( signIn, RC_SIGN_IN)
         }
+
+        binding.forgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.forgotFragment)
+        }
     }
 
     private fun setupLoginListeners() {
@@ -267,6 +271,25 @@ class LoginFragment : Fragment() {
                 navigateToHome()
             }else Log.d("user", task.exception?.message.toString())
         }
+    }
+
+    private fun sendPasswordResetEmail(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Reset link sent to your email: $email",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error: ${task.exception?.localizedMessage}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
     }
 
 }

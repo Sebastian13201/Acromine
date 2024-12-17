@@ -1,5 +1,6 @@
 package com.acromine.ui.acromine
 
+import AcromineViewAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.acromine.main.MainViewModel
 import com.acromine.R
 import com.acromine.data.util.ResponseState
@@ -46,8 +48,22 @@ class AcromineFragment : Fragment() {
 
         // Set up click listener for a button to fetch data
         binding.btnGetUser.setOnClickListener {
-            viewmodel.getAcromine(binding.etShort.text.toString())
+            val shortFormInput = binding.etShort.text.toString().trim()
 
+            // Check if the input is empty
+            if (shortFormInput.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter a short form", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Check if the input length exceeds 3 characters
+            if (shortFormInput.length > 3) {
+                Toast.makeText(requireContext(), "Short form cannot exceed 3 characters", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Input is valid; proceed to fetch data
+            viewmodel.getAcromine(shortFormInput)
         }
 
         binding.btnLogout.setOnClickListener {
@@ -73,15 +89,16 @@ class AcromineFragment : Fragment() {
     private fun updateSuccessUI(response: AcromineModelItemModel) {
         binding.apply {
             progressCircular.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
             tvText.visibility = View.GONE
 
-            val displayText = "${response.sf}, \n" + // Short form
-                    "${response.lfs?.get(0)?.lf}, \n" + // First long form
-                    "${response.lfs?.get(0)?.freq}, \n" + // Frequency of the first long form
-                    "${response.lfs?.get(0)?.since}" // Since when the long form has been used
+            val userList = response.lfs // Get the list of users from the response
+            // Set the adapter for the RecyclerView
+            recyclerView.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = AcromineViewAdapter(userList) // Set the correct adapter
+            }
 
-//            etLong.setText(displayText)
-            outputBox.setText(displayText)
         }
     }
 
